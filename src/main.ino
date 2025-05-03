@@ -4,6 +4,10 @@
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
 
+#include "sensor/ph_sensor.h"
+#include "sensor/ec_sensor.h"
+#include "sensor/temp_sensor.h"
+
 // ===== WiFi & Telegram Config =====
 const char* ssid = "WIFI_NAME";
 const char* password = "WIFI_PASSWORD";
@@ -193,9 +197,17 @@ void handleNewMessages(int numNewMessages) {
   }
 }
 
+PHSensor phSensor(34); // Example pin
+ECSensor ecSensor(35);
+TempSensor tempSensor(32);
+
 // ===== Setup =====
 void setup() {
   Serial.begin(115200);
+
+  phSensor.begin();
+  ecSensor.begin();
+  tempSensor.begin();
 
   for (int i = 0; i < 4; i++) pinMode(pumpPins[i], OUTPUT);
   pinMode(solenoidPin, OUTPUT);
@@ -229,9 +241,15 @@ void loop() {
     lastDataSend = millis();
   }
 
+  float tempC = tempSensor.readTemperatureCelsius();
+  float ec = ecSensor.readEC(tempC);
+  float ph = phSensor.readPH();
+
   int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
   while (numNewMessages) {
     handleNewMessages(numNewMessages);
     numNewMessages = bot.getUpdates(bot.last_message_received + 1);
   }
+  Serial.printf("T: %.2f C, EC: %.2f mS/cm, pH: %.2f\n", tempC, ec, ph);
+  delay(1000);
 }
