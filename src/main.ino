@@ -6,6 +6,8 @@
 
 #include "telegram/telegram_handler.h"
 
+#include "utils/scheduler.h"
+
 #include "sensor/ph_sensor.h"
 #include "sensor/ec_sensor.h"
 #include "sensor/temp_sensor.h"
@@ -13,6 +15,8 @@
 #include "actuators/pump_controller.h"
 #include "actuators/solenoid_controller.h"
 #include "actuators/refill_controller.h"
+
+Scheduler dataScheduler(15 * 60 * 1000); // 15 minutes in milliseconds
 
 // ===== WiFi & Telegram Config =====
 const char* ssid = "WIFI_NAME";
@@ -261,6 +265,10 @@ void loop() {
   if (millis() - lastDataSend > sendInterval) {
     sendSensorData();
     lastDataSend = millis();
+  }
+  if (dataScheduler.shouldRun()) {
+    // Send periodic data to Telegram
+    telegramHandler.sendMessage("Periodic status update!");
   }
 
   telegramHandler.processMessages();
