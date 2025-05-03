@@ -8,6 +8,10 @@
 #include "sensor/ec_sensor.h"
 #include "sensor/temp_sensor.h"
 
+#include "actuators/pump_controller.h"
+#include "actuators/solenoid_controller.h"
+#include "actuators/refill_controller.h"
+
 // ===== WiFi & Telegram Config =====
 const char* ssid = "WIFI_NAME";
 const char* password = "WIFI_PASSWORD";
@@ -201,6 +205,14 @@ PHSensor phSensor(34); // Example pin
 ECSensor ecSensor(35);
 TempSensor tempSensor(32);
 
+PumpController pump1(PUMP_PIN_1);
+PumpController pump2(PUMP_PIN_2);
+PumpController pump3(PUMP_PIN_3);
+PumpController pump4(PUMP_PIN_4);
+
+SolenoidController solenoid(SOLENOID_PIN);
+RefillController refill(REFILL_PUMP_PIN);
+
 // ===== Setup =====
 void setup() {
   Serial.begin(115200);
@@ -208,6 +220,13 @@ void setup() {
   phSensor.begin();
   ecSensor.begin();
   tempSensor.begin();
+
+  pump1.begin();
+  pump2.begin();
+  pump3.begin();
+  pump4.begin();
+  solenoid.begin();
+  refill.begin();
 
   for (int i = 0; i < 4; i++) pinMode(pumpPins[i], OUTPUT);
   pinMode(solenoidPin, OUTPUT);
