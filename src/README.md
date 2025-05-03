@@ -45,3 +45,8 @@ It measures and controls **pH, EC, and water temperature** across multiple hydro
 See [`telegram/commands.md`](telegram/commands.md) for a full command list.
 
 ---
+
+## 📢 **Disclaimer**
+
+This system is intended for experimental or educational use.  
+Always test thoroughly before deploying to a production hydroponic setup.
