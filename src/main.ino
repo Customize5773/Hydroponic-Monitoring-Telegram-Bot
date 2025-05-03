@@ -4,6 +4,8 @@
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
 
+#include "telegram/telegram_handler.h"
+
 #include "sensor/ph_sensor.h"
 #include "sensor/ec_sensor.h"
 #include "sensor/temp_sensor.h"
@@ -20,6 +22,7 @@ const char* chatID = "CHAT_ID";  // target telegram ID
 
 WiFiClientSecure secured_client;
 UniversalTelegramBot bot(botToken, secured_client);
+TelegramHandler telegramHandler(&bot, CHAT_ID);
 
 // ===== Pin Definitions =====
 const int pumpPins[4] = { 23, 22, 21, 19 };    // Peristaltic pump pins for tank1-tank4
@@ -259,6 +262,8 @@ void loop() {
     sendSensorData();
     lastDataSend = millis();
   }
+
+  telegramHandler.processMessages();
 
   float tempC = tempSensor.readTemperatureCelsius();
   float ec = ecSensor.readEC(tempC);
