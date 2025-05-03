@@ -56,7 +56,7 @@ Each pump/valve controlled via **relay module or MOSFET driver**.
 
 ## 🖼️ Flowchart
 
-See [`flowchart.png`](docs/Flowchart.png) for system flow.
+See [`flowchart.png`](Flowchart.png) for system flow.
 
 ### Flowchart Summary:
 
