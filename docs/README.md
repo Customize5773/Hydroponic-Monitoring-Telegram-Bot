@@ -86,13 +86,6 @@ See [`flowchart.png`](Flowchart.png) for system flow.
 
 ---
 
-## 📂 Files in `docs/`:
-
-- `flowchart.png`: system process flowchart
-- `README.md`: this technical documentation
-
----
-
 ## 📢 Disclaimer
 
 This system is experimental. Always validate hardware wiring and logic before operating pumps/valves with live hydroponic setups.
