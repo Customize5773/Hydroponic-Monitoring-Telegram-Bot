@@ -1,6 +1,6 @@
 # Hydroponic Monitoring and Control System 🌿
 
-![Image Hyroponic Monitoring and Control](https://github.com/user-attachments/assets/e531bcbd-946e-4c4b-a8ee-5079f57b5a15)
+![Image Hyroponic Monitoring and Control1](https://github.com/user-attachments/assets/38c7f2aa-4b8d-40d4-812c-ff8cb2c2af60)
 
 
 A standalone, WiFi-based monitoring and automation system for hydroponic farming using Arduino/ESP32.  
