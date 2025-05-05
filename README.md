@@ -40,7 +40,7 @@ This project provides real-time monitoring and automated control of nutrient lev
 │   └── thresholds.json
 ├── docs/                 # Documentation & diagrams
 │   ├── README.md
-│   ├── Graphic Schematic Drawing
+│   ├── Graphic Schematic Drawing.svg
 │   └── flowchart.png
 └── README.md             # Project overview
 ````
