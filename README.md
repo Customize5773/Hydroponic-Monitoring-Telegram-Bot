@@ -2,6 +2,7 @@
 
 ![Image Hyroponic Monitoring and Control](https://github.com/user-attachments/assets/e531bcbd-946e-4c4b-a8ee-5079f57b5a15)
 
+
 A standalone, WiFi-based monitoring and automation system for hydroponic farming using Arduino/ESP32.  
 This project provides real-time monitoring and automated control of nutrient levels (pH, EC), water temperature, and water level across 4 hydroponic tanks, integrated with a Telegram Bot interface for remote access and control.
 
